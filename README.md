@@ -103,9 +103,10 @@ files. The production database must be independent of any other ViperNet or pers
 
 Back up encrypted database data and keys separately, and rehearse restoration in an isolated environment. Losing the
 vault key loses configuration access. Rotating it requires decrypting and re-encrypting all current and historical
-records under a maintenance plan; changing the environment value alone is not a migration. Define and publish a backup
-retention period before launch. Account deletion removes live records immediately; operator backups expire under that
-policy. Run `python manage.py clearsessions` and `python manage.py purge_expired` periodically.
+records under a maintenance plan; changing the environment value alone is not a migration. The service does not yet
+publish a time limit for encrypted backups after account deletion; define and publish that retention period. Account
+deletion removes live records immediately. Run `python manage.py clearsessions` and `python manage.py purge_expired`
+periodically.
 
 Production uses PostgreSQL, real email delivery, a daily maintenance timer, HTTPS, and protected off-tree secrets. The
 initial production cutover included a database/key backup and isolated restore rehearsal. Remaining installer acceptance
